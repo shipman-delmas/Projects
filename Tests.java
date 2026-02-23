@@ -1,23 +1,40 @@
 import java.util.Scanner;
 
 public class Tests {
-    public static void main(String[] args) {
+    private double average;
+    private int scoreCount;
 
+    public Tests() {
+        average = 0.0;
+        scoreCount = 0;
+    }
+
+    public double getAverageValue() {
+        return average;
+    }
+
+    public int getScoreCount() {
+        return scoreCount;
+    }
+
+    public void getAverage() {
         Scanner scnr = new Scanner(System.in);
+        double sum = 0.0;
+        scoreCount = 0;
+        System.out.println("Enter test scores (-1 to quit): ");
+        double score = scnr.nextDouble(); 
+        while (score != -1) {
+            sum = sum + score;
+            scoreCount++;
+            System.out.println("Enter test scores (-1 to quit): ");
+            score = scnr.nextDouble();
+        }
+        average = sum / scoreCount;
+    }
 
-        System.out.println("What is the first score? ");
-        double firstScore = scnr.nextDouble();
-
-        System.out.println("What is the second score? ");
-        double secondScore = scnr.nextDouble();
-
-        System.out.println("What is the third score? ");
-        double thirdScore = scnr.nextDouble();
-
-        System.out.println("Test Score 1: " + firstScore);
-        System.out.println("Test Score 2: " + secondScore);
-        System.out.println("Test Score 3: " + thirdScore);
-        System.out.println("The average of the 3 test scores is: " + ((firstScore + secondScore + thirdScore) / 3));
-
+    public String toString() {
+        return "The average of the " + scoreCount +
+               " scores entered is " +
+               String.format("%.2f", average) + ".";
     }
 }
